@@ -1,5 +1,9 @@
 # af-utilities
 
+## Status of Project
+
+[![Build Status](https://travis-ci.org/acmeframework/af-utilities.svg?branch=master)](https://travis-ci.org/acmeframework/af-utilities)
+
 ## Note: v0.1.0
 
 This is the initial release version. The code has been thoroughly tested with 100% coverage. However, the packaging is still under development so a NPM module has not been published.
