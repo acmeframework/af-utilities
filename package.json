@@ -4,7 +4,8 @@
     "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
     "main": "build/lib/index.js",
     "scripts": {
-        "test": "nyc mocha"
+        "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
+        "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
     },
     "nyc": {
         "extension": [
@@ -19,7 +20,8 @@
             "./test/**/*"
         ],
         "reporter": [
-            "html"
+            "html",
+            "lcov"
         ],
         "all": true,
         "report-dir": "./reports/coverage"
@@ -28,7 +30,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/acmeframework/af-utils"
+        "url": "https://github.com/acmeframework/af-utilities"
     },
     "dependencies": {
         "af-conditionals": "git+https://github.com/acmeframework/af-conditionals.git",
@@ -41,12 +43,12 @@
         "@types/sinon": "^5.0.1",
         "@types/uuid": "^3.4.3",
         "chai": "^4.1.2",
+        "coveralls": "^3.0.2",
         "mocha": "^5.2.0",
         "mochawesome": "^3.0.3",
         "nyc": "^12.0.2",
         "sinon": "^6.1.5",
         "source-map-support": "^0.5.8",
-        "tap-nyc": "^1.0.3",
         "ts-node": "^7.0.1",
         "typescript": "^3.0.1"
     }
