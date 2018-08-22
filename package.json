@@ -1,0 +1,53 @@
+{
+    "name": "af-utils",
+    "version": "0.1.0",
+    "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
+    "main": "build/lib/index.js",
+    "scripts": {
+        "test": "nyc mocha"
+    },
+    "nyc": {
+        "extension": [
+            ".ts",
+            ".tsx"
+        ],
+        "exclude": [
+            "**/*.d.ts",
+            "./build/**/*",
+            "./node_modules/**/*",
+            "./reports/**/*",
+            "./test/**/*"
+        ],
+        "reporter": [
+            "html"
+        ],
+        "all": true,
+        "report-dir": "./reports/coverage"
+    },
+    "author": "Mike Coakley http://github.com/mcoakley",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/acmeframework/af-utils"
+    },
+    "dependencies": {
+        "af-conditionals": "git+https://github.com/acmeframework/af-conditionals.git",
+        "uuid": "^3.3.2"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.1.4",
+        "@types/mocha": "^5.2.4",
+        "@types/node": "^10.7.1",
+        "@types/sinon": "^5.0.1",
+        "@types/uuid": "^3.4.3",
+        "chai": "^4.1.2",
+        "mocha": "^5.2.0",
+        "mochawesome": "^3.0.3",
+        "nyc": "^12.0.2",
+        "sinon": "^6.1.5",
+        "source-map-support": "^0.5.8",
+        "tap-nyc": "^1.0.3",
+        "ts-node": "^7.0.1",
+        "typescript": "^3.0.1"
+    }
+}
