@@ -1,5 +1,11 @@
 # af-utilities
 
+## Note: v0.1.0
+
+This is the initial release version. The code has been thoroughly tested with 100% coverage. However, the packaging is still under development so a NPM module has not been published.
+
+## Description
+
 The af-utilities library provides utility classes and functions used throughout the Acme Framework frameworks and libraries. While they are designed to be general in nature they are opinionated in functionality.
 
 ## Classes Provided
@@ -12,9 +18,9 @@ The af-utilities library provides utility classes and functions used throughout 
 
 `defaultTimers` - an instance of TaskTimerManager using the `DEFAULT_TASK_TIMER_MANAGER_NAME` as the name for the instance.
 
-[Support Issues](https://github.com/acmeframework/af-utilities/issues)
+## [Support Issues](https://github.com/acmeframework/af-utilities/issues)
 
-The MIT License
+## The MIT License
 
 Copyright &copy; 2018 Acme Framework
 

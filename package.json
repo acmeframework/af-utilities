@@ -24,7 +24,7 @@
         "all": true,
         "report-dir": "./reports/coverage"
     },
-    "author": "Mike Coakley http://github.com/mcoakley",
+    "author": "Acme Framework",
     "license": "MIT",
     "repository": {
         "type": "git",
