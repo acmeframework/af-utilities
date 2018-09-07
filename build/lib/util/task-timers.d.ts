@@ -55,4 +55,4 @@ export declare class TaskTimerManager {
     toString(): string;
     protected getTaskId(): string;
 }
-export declare let defaultTimers: TaskTimerManager;
+export declare const defaultTimers: TaskTimerManager;
