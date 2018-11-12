@@ -6,9 +6,11 @@
  * @author Mike Coakley <mcoakley@acmeframework.com>
  * @version 0.1.0
  */
+import {
+    assert_isUsable,
+} from "af-conditionals/build/lib/conditionals/is-usable";
 import * as uuid from "uuid";
 
-import { isUsable } from "af-conditionals/build/lib/conditionals/is-usable";
 import { logger } from ".";
 
 export enum TaskStatus {
@@ -43,8 +45,8 @@ export class TaskTimer {
     protected data: TaskData;
 
     constructor(taskId: TaskId, taskName: string) {
-        isUsable.assert(taskId);
-        isUsable.assert(taskName);
+        assert_isUsable(taskId);
+        assert_isUsable(taskName);
         this.data = {
             msDiff: 0,
             start: Date.now(),

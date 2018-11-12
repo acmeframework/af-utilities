@@ -10,6 +10,7 @@
  * @version 0.1.0
  */
 import { isFunction, isObject } from "af-conditionals";
+
 import { defaultTimers, TaskTimerManager } from "./task-timers";
 
 // tslint:disable:no-console
@@ -166,14 +167,14 @@ class BrowserLogger extends BaseLogger implements LogDriver {
     }
 
     public time(label: string): string {
-        if (isFunction.test(console.time)) {
+        if (isFunction(console.time)) {
             console.time(label);
         }
         return label;
     }
 
     public timeEnd(label: string): number {
-        if (isFunction.test(console.timeEnd)) {
+        if (isFunction(console.timeEnd)) {
             console.timeEnd(label);
         }
         return 0;
@@ -181,7 +182,7 @@ class BrowserLogger extends BaseLogger implements LogDriver {
 
     public warn(message: string, ...params: any[]): void {
         if (!this.shouldFilterMessage(LogSeverity.Warning)) {
-            if (isFunction.test(console.warn)) {
+            if (isFunction(console.warn)) {
                 console.warn(message, params);
             } else {
                 console.log(message, params);
@@ -268,12 +269,12 @@ export class Logger implements LogDriver {
     }
 
     public setLogger(newLogger?: LogDriver): void {
-        if (isObject.test(newLogger)) {
+        if (isObject(newLogger)) {
             this.logger = newLogger;
         } else {
             // Quick easy check to determine if Node or a Window/WebWorker
             // environment
-            if (!isFunction.test(console.debug)) {
+            if (!isFunction(console.debug)) {
                 this.logger = new BrowserLogger();
             } else {
                 this.logger = new NodeLogger();
