@@ -98,20 +98,20 @@ class BrowserLogger extends BaseLogger {
         }
     }
     time(label) {
-        if (af_conditionals_1.isFunction.test(console.time)) {
+        if (af_conditionals_1.isFunction(console.time)) {
             console.time(label);
         }
         return label;
     }
     timeEnd(label) {
-        if (af_conditionals_1.isFunction.test(console.timeEnd)) {
+        if (af_conditionals_1.isFunction(console.timeEnd)) {
             console.timeEnd(label);
         }
         return 0;
     }
     warn(message, ...params) {
         if (!this.shouldFilterMessage(LogSeverity.Warning)) {
-            if (af_conditionals_1.isFunction.test(console.warn)) {
+            if (af_conditionals_1.isFunction(console.warn)) {
                 console.warn(message, params);
             }
             else {
@@ -182,11 +182,11 @@ class Logger {
         this.setLogger(newLogger);
     }
     setLogger(newLogger) {
-        if (af_conditionals_1.isObject.test(newLogger)) {
+        if (af_conditionals_1.isObject(newLogger)) {
             this.logger = newLogger;
         }
         else {
-            if (!af_conditionals_1.isFunction.test(console.debug)) {
+            if (!af_conditionals_1.isFunction(console.debug)) {
                 this.logger = new BrowserLogger();
             }
             else {

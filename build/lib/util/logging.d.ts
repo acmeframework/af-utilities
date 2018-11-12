@@ -28,7 +28,7 @@ export declare enum LogSeverity {
     Debug = 7
 }
 export declare const LOG_SEVERITY_COUNT = 8;
-export declare const LOG_SEVERITY_LOWEST_SEVERITY: LogSeverity;
+export declare const LOG_SEVERITY_LOWEST_SEVERITY = LogSeverity.Debug;
 export declare class BaseLogger {
     private _filteredMessages;
     private _logSeverity;

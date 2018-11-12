@@ -7,8 +7,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const uuid = __importStar(require("uuid"));
 const is_usable_1 = require("af-conditionals/build/lib/conditionals/is-usable");
+const uuid = __importStar(require("uuid"));
 const _1 = require(".");
 var TaskStatus;
 (function (TaskStatus) {
@@ -28,8 +28,8 @@ var TaskStatus;
 })(TaskStatus = exports.TaskStatus || (exports.TaskStatus = {}));
 class TaskTimer {
     constructor(taskId, taskName) {
-        is_usable_1.isUsable.assert(taskId);
-        is_usable_1.isUsable.assert(taskName);
+        is_usable_1.assert_isUsable(taskId);
+        is_usable_1.assert_isUsable(taskName);
         this.data = {
             msDiff: 0,
             start: Date.now(),
