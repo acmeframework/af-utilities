@@ -4,6 +4,7 @@
     "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
     "main": "build/lib/index.js",
     "scripts": {
+        "build": "npm test && ./node_modules/.bin/tsc",
         "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
         "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
     },
