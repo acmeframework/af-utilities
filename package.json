@@ -1,24 +1,27 @@
 {
-    "name": "af-utils",
-    "version": "0.1.0",
+    "name": "af-utilities",
+    "version": "1.0.0",
     "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
     "main": "build/lib/index.js",
     "scripts": {
-        "build": "npm test && ./node_modules/.bin/tsc",
+        "clean-dist": "rm -rf dist",
+        "clean-reports": "rm -rf reports && rm -rf .nyc_output",
+        "clean-all": "npm run clean-dist && npm run clean-reports",
+        "compile": "./node_modules/.bin/tsc",
+        "dist": "npm run clean-all && npm test && npm run compile",
         "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha",
         "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
     },
+    "files": [
+        "dist"
+    ],
     "nyc": {
+        "include": [
+            "src"
+        ],
         "extension": [
             ".ts",
             ".tsx"
-        ],
-        "exclude": [
-            "**/*.d.ts",
-            "./build/**/*",
-            "./node_modules/**/*",
-            "./reports/**/*",
-            "./test/**/*"
         ],
         "reporter": [
             "html",
@@ -27,30 +30,36 @@
         "all": true,
         "report-dir": "./reports/coverage"
     },
-    "author": "Acme Framework",
+    "author": "Michael Coakley <mcoakley@acmeframework.com>",
     "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/acmeframework/af-utilities"
     },
+    "bugs": {
+        "url": "https://github.com/acmeframework/af-utilities/issues"
+    },
+    "homepage": "https://github.com/acmeframework/af-utilities",
     "dependencies": {
-        "af-conditionals": "git+https://github.com/acmeframework/af-conditionals.git",
+        "af-conditionals": "^1.0.0",
         "uuid": "^3.3.2"
     },
     "devDependencies": {
         "@types/chai": "^4.1.7",
-        "@types/mocha": "^5.2.4",
-        "@types/node": "^10.12.5",
-        "@types/sinon": "^5.0.5",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^11.9.4",
+        "@types/sinon": "^7.0.6",
         "@types/uuid": "^3.4.4",
         "chai": "^4.2.0",
         "coveralls": "^3.0.2",
         "mocha": "^5.2.0",
         "mochawesome": "^3.1.1",
-        "nyc": "^12.0.2",
-        "sinon": "^6.3.5",
-        "source-map-support": "^0.5.8",
-        "ts-node": "^7.0.1",
-        "typescript": "^3.1.6"
+        "nyc": "^13.3.0",
+        "sinon": "^7.2.4",
+        "source-map-support": "^0.5.10",
+        "ts-node": "^8.0.2",
+        "tslint": "^5.12.1",
+        "typescript": "^3.3.3",
+        "typescript-tslint-plugin": "^0.3.1"
     }
 }

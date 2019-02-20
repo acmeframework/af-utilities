@@ -7,11 +7,10 @@
  * timers - timers provided by the task-timers module.
  *
  * @author Mike Coakley https://github.com/mcoakley
- * @version 0.1.0
  */
-import { isFunction, isObject } from "af-conditionals";
+import { isFunction, isObject } from 'af-conditionals';
 
-import { defaultTimers, TaskTimerManager } from "./task-timers";
+import { defaultTimers, TaskTimerManager } from './task-timers';
 
 // tslint:disable:no-console
 
@@ -342,12 +341,12 @@ export class Logger implements LogDriver {
         this.logger!.reset();
     }
 
-    public time(label = "default"): string {
+    public time(label = 'default'): string {
         const description = this.timerMgr.startTimer(label);
         return this.logger!.time(description);
     }
 
-    public timeEnd(label = "default"): number {
+    public timeEnd(label = 'default'): number {
         this.logger!.timeEnd(label);
         return this.timerMgr.stopTimer(label);
     }

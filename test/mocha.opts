@@ -3,4 +3,4 @@
 --recursive
 --reporter mochawesome
 --reporter-options reportDir=./reports/testing
-./test/**/*.spec.ts
+./test/lib/**/*.spec.ts

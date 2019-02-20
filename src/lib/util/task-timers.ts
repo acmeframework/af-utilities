@@ -4,14 +4,11 @@
  * Utility classes for timing tasks.
  *
  * @author Mike Coakley <mcoakley@acmeframework.com>
- * @version 0.1.0
  */
-import {
-    assert_isUsable,
-} from "af-conditionals/build/lib/conditionals/is-usable";
-import * as uuid from "uuid";
+import { assert_isUsable } from 'af-conditionals';
+import * as uuid from 'uuid';
 
-import { logger } from ".";
+import { logger } from '.';
 
 export enum TaskStatus {
     initialized,
@@ -56,20 +53,20 @@ export class TaskTimer {
             taskName
         };
         this.data.status = TaskStatus.running;
-        logger.info("TaskTimer: starting " + this.data.taskName +
-            " (id: " + this.data.taskId + ")", this.data);
+        logger.info('TaskTimer: starting ' + this.data.taskName +
+            ' (id: ' + this.data.taskId + ')', this.data);
     }
 
     public stopTask(): number {
         this.data.status = TaskStatus.stopping;
-        logger.info("TaskTimer: stopping " + this.data.taskName +
-            " (id: " + this.data.taskId + ")", this.data);
+        logger.info('TaskTimer: stopping ' + this.data.taskName +
+            ' (id: ' + this.data.taskId + ')', this.data);
         this.data.stop = Date.now();
         this.data.status = TaskStatus.stopped;
         this.data.msDiff = this.data.stop - this.data.start;
-        logger.info("TaskTimer: stopped " + this.data.taskName +
-            " (id: " + this.data.taskId + ") took " +
-            this.data.msDiff + "ms", this.data);
+        logger.info('TaskTimer: stopped ' + this.data.taskName +
+            ' (id: ' + this.data.taskId + ') took ' +
+            this.data.msDiff + 'ms', this.data);
         return this.data.msDiff;
     }
 
@@ -92,7 +89,7 @@ export interface TaskTimerReport {
     avgTaskTime: number;
 }
 
-export const DEFAULT_TASK_TIMER_MANAGER_NAME = "Default";
+export const DEFAULT_TASK_TIMER_MANAGER_NAME = 'Default';
 
 export class TaskTimerManager {
 

@@ -4,9 +4,11 @@
 
 [![Build Status](https://travis-ci.org/acmeframework/af-utilities.svg?branch=master)](https://travis-ci.org/acmeframework/af-utilities)  [![Coverage Status](https://coveralls.io/repos/github/acmeframework/af-utilities/badge.svg?branch=master)](https://coveralls.io/github/acmeframework/af-utilities?branch=master)
 
-## Note: v0.1.0
+## Installation
 
-This is the initial release version. The code has been thoroughly tested with 100% coverage. However, the packaging is still under development so a NPM module has not been published.
+```bash
+npm install af-utilities
+```
 
 ## Description
 
@@ -24,9 +26,15 @@ The af-utilities library provides utility classes and functions used throughout 
 
 ## [Support Issues](https://github.com/acmeframework/af-utilities/issues)
 
+## Release Notes
+
+### v1.0.0 - Initial Release
+
+This is the initial release version. The code has been thoroughly tested with 100% coverage.
+
 ## The MIT License
 
-Copyright &copy; 2018 Acme Framework
+Copyright &copy; 2019 Acme Framework
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -2,34 +2,53 @@
     "extends": "tslint:recommended",
     "rules": {
         // changes to tslint:recommended
-        "curly": [true, "ignore-same-line"],
-        "indent": [true,
+        "curly": [
+            true,
+            "ignore-same-line"
+        ],
+        "indent": [
+            true,
             "spaces"
         ],
-        "interface-name": [true, "never-prefix"],
-        "linebreak-style": [true, "CRLF"],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
+        "linebreak-style": [
+            true,
+            "CRLF"
+        ],
         "max-classes-per-file": false,
         "no-empty-interface": false,
         "no-inferrable-types": true,
         "no-internal-module": true,
         "no-null-keyword": true,
-        "no-trailing-whitespace": [true, "ignore-template-strings"],
+        "no-trailing-whitespace": [
+            true,
+            "ignore-template-strings"
+        ],
         //"no-unnecessary-qualifier": true,
         //"no-unnecessary-type-assertion": true,
         "no-var-keyword": true,
         "object-literal-shorthand": true,
-        "one-line": [true,
+        "one-line": [
+            true,
             "check-catch",
             "check-finally",
             "check-else",
             "check-whitespace"
         ],
         "prefer-const": true,
-        "quotemark": [true,
-            "double",
+        "quotemark": [
+            true,
+            "single",
             "avoid-escape"
         ],
-        "semicolon": [true, "always", "ignore-bound-class-methods"],
+        "semicolon": [
+            true,
+            "always",
+            "ignore-bound-class-methods"
+        ],
         "space-within-parens": true,
         "triple-equals": true,
         "typedef-whitespace": [
@@ -49,7 +68,8 @@
                 "variable-declaration": "onespace"
             }
         ],
-        "whitespace": [true,
+        "whitespace": [
+            true,
             "check-branch",
             "check-decl",
             "check-operator",
@@ -57,13 +77,26 @@
             "check-separator",
             "check-type"
         ],
-
         // Config different from tslint:latest
-        "array-type": [true, "array"],
-        "no-implicit-dependencies": [true, "dev"],
+        "array-type": [
+            true,
+            "array"
+        ],
+        "no-implicit-dependencies": [
+            true,
+            "dev"
+        ],
         "no-string-literal": false,
-        "object-literal-key-quotes": [true, "consistent-as-needed"],
-        "trailing-comma": false,        
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
-	}
+        "object-literal-key-quotes": [
+            true,
+            "consistent-as-needed"
+        ],
+        "trailing-comma": false,
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ]
+    }
 }
