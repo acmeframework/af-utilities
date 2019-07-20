@@ -1,20 +1,9 @@
-node_modules
 .nyc_output
+.vscode
 dist
+docs
+node_modules
 reports
 
-# Logs
-logs
 *.log
 npm-debug.log*
-
-# VS Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# Crap files
-[Dd]esktop.ini
-.DS_Store

@@ -2,7 +2,7 @@
 
 ## Status of Project
 
-[![Build Status](https://travis-ci.org/acmeframework/af-utilities.svg?branch=master)](https://travis-ci.org/acmeframework/af-utilities)  [![Coverage Status](https://coveralls.io/repos/github/acmeframework/af-utilities/badge.svg?branch=master)](https://coveralls.io/github/acmeframework/af-utilities?branch=master)
+[![Build Status](https://travis-ci.org/acmeframework/af-utilities.svg?branch=master)](https://travis-ci.org/acmeframework/af-utilities) [![Coverage Status](https://coveralls.io/repos/github/acmeframework/af-utilities/badge.svg?branch=master)](https://coveralls.io/github/acmeframework/af-utilities?branch=master)
 
 ## Installation
 
@@ -31,6 +31,10 @@ The af-utilities library provides utility classes and functions used throughout 
 ### v1.0.0 - Initial Release
 
 This is the initial release version. The code has been thoroughly tested with 100% coverage.
+
+### v1.1.0 - Packaging Updates
+
+Updates to dependencies to remove security vulnerabilities. Updates to the packaging.
 
 ## The MIT License
 
