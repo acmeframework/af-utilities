@@ -1,6 +1,6 @@
 {
   "name": "af-utilities",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
   "main": "build/lib/index.js",
   "scripts": {
