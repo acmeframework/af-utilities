@@ -2,7 +2,7 @@
   "name": "af-utilities",
   "version": "1.2.0",
   "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
-  "main": "build/lib/index.js",
+  "main": "dist/lib/index.js",
   "scripts": {
     "clean-dist": "rm -rf dist",
     "clean-reports": "rm -rf reports && rm -rf .nyc_output",
