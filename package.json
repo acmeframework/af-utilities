@@ -1,8 +1,8 @@
 {
   "name": "af-utilities",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
-  "main": "build/lib/index.js",
+  "main": "dist/lib/index.js",
   "scripts": {
     "clean-dist": "rm -rf dist",
     "clean-reports": "rm -rf reports && rm -rf .nyc_output",
@@ -42,24 +42,24 @@
   "homepage": "https://github.com/acmeframework/af-utilities",
   "dependencies": {
     "af-conditionals": "^1.1.1",
-    "tslib": "^1.10.0",
-    "uuid": "^3.3.3"
+    "tslib": "^1.11.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.7",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^13.1.4",
-    "@types/sinon": "^7.5.1",
-    "@types/uuid": "^3.4.6",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.2",
+    "@types/sinon": "^9.0.0",
+    "@types/uuid": "^7.0.2",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.9",
-    "mocha": "^7.0.0",
-    "mochawesome": "^4.1.0",
-    "nyc": "^15.0.0",
-    "sinon": "^8.0.2",
-    "source-map-support": "^0.5.16",
-    "ts-node": "^8.5.4",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.4"
+    "coveralls": "^3.0.13",
+    "mocha": "^7.1.1",
+    "mochawesome": "^6.1.0",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.2",
+    "source-map-support": "^0.5.18",
+    "ts-node": "^8.9.0",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
   }
 }

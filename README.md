@@ -24,6 +24,10 @@ The af-utilities library provides utility classes and functions used throughout 
 
 `defaultTimers` - an instance of TaskTimerManager using the `DEFAULT_TASK_TIMER_MANAGER_NAME` as the name for the instance.
 
+## Functions Provided
+
+`setValue` - this function provides an easy way to set defaults while checking for an usable value or not. This function can also be used to ensure a consistent value of `undefined` for `undefined` or `null` values. If you leave `defaultValue` undefined, it will be returned when `newValue` is unusable (which is `undefined` or `null`).
+
 ## [Support Issues](https://github.com/acmeframework/af-utilities/issues)
 
 ## Release Notes
@@ -36,9 +40,19 @@ This is the initial release version. The code has been thoroughly tested with 10
 
 Updates to dependencies to remove security vulnerabilities. Updates to the packaging.
 
+### v1.1.1 - Dependency Updates
+
+Updated all dependencies to the latest releases. This fixed an vulnerability with Handlebars which was a nested dependency. Handlebars is no longer a nested dependency with this release.
+
+### v1.2.0 - Minor new features
+
+- Added a new method to the TaskTimer class that now allows you to define your own current time source. This can be used to provide a more accurate time source than the default `Date.now()`. This change is fully backward compatible.
+- Added a new utility function:
+  - `setValue`
+
 ## The MIT License
 
-Copyright &copy; 2019 Acme Framework
+Copyright &copy; 2019-2021 Acme Framework
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
