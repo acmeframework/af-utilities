@@ -154,12 +154,12 @@ function _callLogMethod(
   message: string,
   ...params: any[]
 ): void {
-  // Since we writing in TypeScript the tslib will convert ...params into
-  // an Array for us. This means that in the methods below that call this
-  // function, they will pass us an empty Array which will be converted here
-  // to an Array with a single item, an empty Array. Therefore, we must
-  // dereference it here to get to the actual parameters, if any, that were
-  // sent.
+  // Rest parameters always introduce an Array into the variable scope, even
+  // an empty array. The methods that were directly calling the logging
+  // methods of console weren't taking this into account. We perform a check
+  // here to ensure we do not pass an empty Array to console. Since we are
+  // nesting this call we must dereference the params Array to get to the
+  // actual parameters.
   const origParams: any[] = params[0];
 
   if (origParams.length > 0) {
