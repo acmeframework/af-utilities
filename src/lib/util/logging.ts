@@ -8,9 +8,9 @@
  *
  * @author Mike Coakley https://github.com/mcoakley
  */
-import { isFunction, isObject } from 'af-conditionals';
+import { isFunction, isObject } from "af-conditionals";
 
-import { defaultTimers, TaskTimerManager } from './task-timers';
+import { defaultTimers, TaskTimerManager } from "./task-timers";
 
 // tslint:disable:no-console
 
@@ -66,7 +66,7 @@ export enum LogSeverity {
   Warning,
   Notice,
   Informational,
-  Debug
+  Debug,
 }
 
 // This MUST ALWAYS = the # of severity types in the LogSeverity Enum
@@ -148,52 +148,73 @@ export class BaseLogger {
   }
 }
 
+function _callLogMethod(
+  logInstance: any,
+  method: string,
+  message: string,
+  ...params: any[]
+): void {
+  // Since we writing in TypeScript the tslib will convert ...params into
+  // an Array for us. This means that in the methods below that call this
+  // function, they will pass us an empty Array which will be converted here
+  // to an Array with a single item, an empty Array. Therefore, we must
+  // dereference it here to get to the actual parameters, if any, that were
+  // sent.
+  const origParams: any[] = params[0];
+
+  if (origParams.length > 0) {
+    logInstance[method](message, origParams);
+  } else {
+    logInstance[method](message);
+  }
+}
+
 class BrowserLogger extends BaseLogger implements LogDriver {
   public alert(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Alert)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public critical(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Critical)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public debug(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Debug)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public emergency(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Emergency)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public error(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Error)) {
-      console.error(message, params);
+      _callLogMethod(console, "error", message, params);
     }
   }
 
   public info(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Informational)) {
-      console.info(message, params);
+      _callLogMethod(console, "info", message, params);
     }
   }
 
   public log(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Informational)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public notice(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Notice)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
@@ -214,9 +235,9 @@ class BrowserLogger extends BaseLogger implements LogDriver {
   public warn(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Warning)) {
       if (isFunction(console.warn)) {
-        console.warn(message, params);
+        _callLogMethod(console, "warn", message, params);
       } else {
-        console.log(message, params);
+        _callLogMethod(console, "log", message, params);
       }
     }
   }
@@ -225,49 +246,49 @@ class BrowserLogger extends BaseLogger implements LogDriver {
 class NodeLogger extends BaseLogger implements LogDriver {
   public alert(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Alert)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public critical(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Critical)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public debug(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Debug)) {
-      console.debug(message, params);
+      _callLogMethod(console, "debug", message, params);
     }
   }
 
   public emergency(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Emergency)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public error(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Error)) {
-      console.error(message, params);
+      _callLogMethod(console, "error", message, params);
     }
   }
 
   public info(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Informational)) {
-      console.info(message, params);
+      _callLogMethod(console, "info", message, params);
     }
   }
 
   public log(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Informational)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
   public notice(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Notice)) {
-      console.log(message, params);
+      _callLogMethod(console, "log", message, params);
     }
   }
 
@@ -283,7 +304,7 @@ class NodeLogger extends BaseLogger implements LogDriver {
 
   public warn(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Warning)) {
-      console.warn(message, params);
+      _callLogMethod(console, "warn", message, params);
     }
   }
 }
@@ -336,53 +357,53 @@ export class Logger implements LogDriver {
   }
 
   public alert(message: string, ...params: any[]): void {
-    this.logger!.alert(message, params);
+    _callLogMethod(this.logger!, "alert", message, params);
   }
 
   public critical(message: string, ...params: any[]): void {
-    this.logger!.critical(message, params);
+    _callLogMethod(this.logger!, "critical", message, params);
   }
 
   public debug(message: string, ...params: any[]): void {
-    this.logger!.debug(message, params);
+    _callLogMethod(this.logger!, "debug", message, params);
   }
 
   public emergency(message: string, ...params: any[]): void {
-    this.logger!.emergency(message, params);
+    _callLogMethod(this.logger!, "emergency", message, params);
   }
 
   public error(message: string, ...params: any[]): void {
-    this.logger!.error(message, params);
+    _callLogMethod(this.logger!, "error", message, params);
   }
 
   public info(message: string, ...params: any[]): void {
-    this.logger!.info(message, params);
+    _callLogMethod(this.logger!, "info", message, params);
   }
 
   public log(message: string, ...params: any[]): void {
-    this.logger!.log(message, params);
+    _callLogMethod(this.logger!, "log", message, params);
   }
 
   public notice(message: string, ...params: any[]): void {
-    this.logger!.notice(message, params);
+    _callLogMethod(this.logger!, "notice", message, params);
   }
 
   public reset() {
     this.logger!.reset();
   }
 
-  public time(label = 'default'): string {
+  public time(label = "default"): string {
     const description = this.timerMgr.startTimer(label);
     return this.logger!.time(description);
   }
 
-  public timeEnd(label = 'default'): number {
+  public timeEnd(label = "default"): number {
     this.logger!.timeEnd(label);
     return this.timerMgr.stopTimer(label);
   }
 
   public warn(message: string, ...params: any[]): void {
-    this.logger!.warn(message, params);
+    _callLogMethod(this.logger!, "warn", message, params);
   }
 }
 
