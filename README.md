@@ -40,7 +40,9 @@ This is the initial release version. The code has been thoroughly tested with 10
 
 Updates to dependencies to remove security vulnerabilities. Updates to the packaging.
 
-### v1.1.1 - Dependency Updates
+#### Fixes
+
+- v1.1.1 - Dependency Updates
 
 Updated all dependencies to the latest releases. This fixed an vulnerability with Handlebars which was a nested dependency. Handlebars is no longer a nested dependency with this release.
 
@@ -49,6 +51,11 @@ Updated all dependencies to the latest releases. This fixed an vulnerability wit
 - Added a new method to the TaskTimer class that now allows you to define your own current time source. This can be used to provide a more accurate time source than the default `Date.now()`. This change is fully backward compatible.
 - Added a new utility function:
   - `setValue`
+
+#### Fixes
+
+- v1.2.1 - Fix Rest Parameter Handling
+- v1.2.2 - Fix Test Timing Expectations
 
 ## The MIT License
 
