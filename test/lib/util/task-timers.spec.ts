@@ -32,7 +32,7 @@ describe('UniqueTaskId class', function () {
 describe('TaskTimerManager class', function () {
   const TEST_DELAY = 200;
   // Ensure we account for inconsistencies possible in setTimeout
-  const TEST_DEPLAY_EXPECTED = TEST_DELAY * 0.97;
+  const TEST_DELAY_EXPECTED = TEST_DELAY * 0.97;
 
   before(function () {
     logger.reset(); // Don't assume anything
@@ -61,7 +61,7 @@ describe('TaskTimerManager class', function () {
     const taskId: string = defaultTimers.startTimer('Test Timer');
     setTimeout(function () {
       const tStop = defaultTimers.stopTimer(taskId);
-      expect(tStop).to.be.at.least(TEST_DEPLAY_EXPECTED);
+      expect(tStop).to.be.at.least(TEST_DELAY_EXPECTED);
 
       tReport = defaultTimers.timerReport();
       expect(tReport.taskCount).to.equal(currentCount + 1);
