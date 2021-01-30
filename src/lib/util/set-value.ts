@@ -15,6 +15,7 @@ export type NumberString = number | string | bigint;
  * @returns {(NumberString | undefined)}
  */
 export function setValue(
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   newValue: any,
   defaultValue?: NumberString
 ): NumberString | undefined {

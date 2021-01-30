@@ -1,7 +1,7 @@
-import "mocha";
+import 'mocha';
 
-import { expect } from "chai";
-import sinon from "sinon";
+import { expect } from 'chai';
+import sinon from 'sinon';
 
 import {
   BaseLogger,
@@ -11,9 +11,9 @@ import {
   Logger,
   logger,
   LogSeverity,
-} from "../../../src/lib";
+} from '../../../src/lib';
 
-// tslint:disable:no-unused-expression no-null-keyword no-console
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-non-null-assertion */
 
 class TestLogger extends BaseLogger implements LogDriver {
   public alert = sinon.spy();
@@ -53,7 +53,7 @@ const TEST_LOG_LOG_MESSAGE = `Log Message (severity: ${LogSeverity.Informational
 const TEST_LOG_NOTICE_MESSAGE = `Notice Message (severity: ${LogSeverity.Notice})`;
 const TEST_LOG_WARNING_MESSAGE = `Warning Message (severity: ${LogSeverity.Warning})`;
 
-type ConsoleSignature = (message: string, ...params: any[]) => void;
+type ConsoleSignature = (message: string, ...params: any[]) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 class ConsoleTester {
   protected originalDebug!: ConsoleSignature | undefined;
@@ -79,56 +79,56 @@ class ConsoleTester {
    * @memberof ConsoleTester
    */
   constructor(
-    testType: "default" | "node" | "browser" = "default",
+    testType: 'default' | 'node' | 'browser' = 'default',
     browserWithExtras = false
   ) {
     // These methods are always found on the console object
-    sinon.spy(console, "error");
-    sinon.spy(console, "info");
-    sinon.spy(console, "log");
+    sinon.spy(console, 'error');
+    sinon.spy(console, 'info');
+    sinon.spy(console, 'log');
 
-    let isNode = typeof console.debug !== "undefined";
-    const warningDefined = isNode || typeof console.warn !== "undefined";
-    const timeDefined = isNode || typeof console.time !== "undefined";
-    const timeEndDefined = isNode || typeof console.timeEnd !== "undefined";
+    let isNode = typeof console.debug !== 'undefined';
+    const warningDefined = isNode || typeof console.warn !== 'undefined';
+    const timeDefined = isNode || typeof console.time !== 'undefined';
+    const timeEndDefined = isNode || typeof console.timeEnd !== 'undefined';
 
     // Now either setup based upon the environment or create a specific one
-    if (testType === "default") {
+    if (testType === 'default') {
       if (isNode) {
-        sinon.spy(console, "debug");
-        sinon.spy(console, "time");
-        sinon.spy(console, "timeEnd");
-        sinon.spy(console, "warn");
+        sinon.spy(console, 'debug');
+        sinon.spy(console, 'time');
+        sinon.spy(console, 'timeEnd');
+        sinon.spy(console, 'warn');
       } else {
-        if (timeDefined) sinon.spy(console, "time");
-        if (timeEndDefined) sinon.spy(console, "timeEnd");
-        if (warningDefined) sinon.spy(console, "warn");
+        if (timeDefined) sinon.spy(console, 'time');
+        if (timeEndDefined) sinon.spy(console, 'timeEnd');
+        if (warningDefined) sinon.spy(console, 'warn');
       }
     } else {
       // We aren't default so force isNode
-      isNode = testType === "node";
+      isNode = testType === 'node';
       if (isNode) {
-        sinon.spy(console, "debug");
-        sinon.spy(console, "time");
-        sinon.spy(console, "timeEnd");
-        sinon.spy(console, "warn");
+        sinon.spy(console, 'debug');
+        sinon.spy(console, 'time');
+        sinon.spy(console, 'timeEnd');
+        sinon.spy(console, 'warn');
       } else {
         this.originalDebug = console.debug;
         console.debug = undefined!; // Force debug to undefined!
 
         if (browserWithExtras) {
           if (timeDefined) {
-            sinon.spy(console, "time");
+            sinon.spy(console, 'time');
           } else {
             console.time = sinon.spy();
           }
           if (timeEndDefined) {
-            sinon.spy(console, "timeEnd");
+            sinon.spy(console, 'timeEnd');
           } else {
             console.timeEnd = sinon.spy();
           }
           if (warningDefined) {
-            sinon.spy(console, "warn");
+            sinon.spy(console, 'warn');
           } else {
             console.warn = sinon.spy();
           }
@@ -153,13 +153,13 @@ class ConsoleTester {
     console.log.resetHistory();
 
     // @ts-ignore
-    if (typeof console.debug !== "undefined") console.debug.resetHistory();
+    if (typeof console.debug !== 'undefined') console.debug.resetHistory();
     // @ts-ignore
-    if (typeof console.time !== "undefined") console.time.resetHistory();
+    if (typeof console.time !== 'undefined') console.time.resetHistory();
     // @ts-ignore
-    if (typeof console.timeEnd !== "undefined") console.timeEnd.resetHistory();
+    if (typeof console.timeEnd !== 'undefined') console.timeEnd.resetHistory();
     // @ts-ignore
-    if (typeof console.warn !== "undefined") console.warn.resetHistory();
+    if (typeof console.warn !== 'undefined') console.warn.resetHistory();
   }
 
   public restore() {
@@ -170,9 +170,9 @@ class ConsoleTester {
     // @ts-ignore
     console.log.restore();
 
-    if (typeof console.debug !== "undefined") {
+    if (typeof console.debug !== 'undefined') {
       // @ts-ignore
-      if (typeof console.debug.restore !== "undefined") {
+      if (typeof console.debug.restore !== 'undefined') {
         // @ts-ignore
         console.debug.restore();
       }
@@ -181,9 +181,9 @@ class ConsoleTester {
       }
       this.originalDebug = undefined!;
     }
-    if (typeof console.time !== "undefined") {
+    if (typeof console.time !== 'undefined') {
       // @ts-ignore
-      if (typeof console.time.restore !== "undefined") {
+      if (typeof console.time.restore !== 'undefined') {
         // @ts-ignore
         console.time.restore();
       }
@@ -192,9 +192,9 @@ class ConsoleTester {
       }
       this.originalTime = undefined!;
     }
-    if (typeof console.timeEnd !== "undefined") {
+    if (typeof console.timeEnd !== 'undefined') {
       // @ts-ignore
-      if (typeof console.timeEnd.restore !== "undefined") {
+      if (typeof console.timeEnd.restore !== 'undefined') {
         // @ts-ignore
         console.timeEnd.restore();
       }
@@ -203,9 +203,9 @@ class ConsoleTester {
       }
       this.originalTimeEnd = undefined!;
     }
-    if (typeof console.warn !== "undefined") {
+    if (typeof console.warn !== 'undefined') {
       // @ts-ignore
-      if (typeof console.warn.restore !== "undefined") {
+      if (typeof console.warn.restore !== 'undefined') {
         // @ts-ignore
         console.warn.restore();
       }
@@ -221,7 +221,7 @@ class ConsoleTester {
       return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
-    const TEST_LABEL = "Testing123";
+    const TEST_LABEL = 'Testing123';
     const TEST_DELAY = 200;
     // We use a lesser value for the test timing expected delay. The
     // setTimeout function does not guarantee exact timing and can be
@@ -269,7 +269,7 @@ class ConsoleTester {
     expect(console.info.calledOnce).to.be.true;
 
     // Test console methods that may be spied
-    if (typeof console.debug !== "undefined") {
+    if (typeof console.debug !== 'undefined') {
       // @ts-ignore
       expect(console.debug.calledOnce).to.be.true;
     } else {
@@ -279,7 +279,7 @@ class ConsoleTester {
           .withArgs(TEST_LOG_DEBUG_MESSAGE).calledOnce
       ).to.be.true;
     }
-    if (typeof console.warn !== "undefined") {
+    if (typeof console.warn !== 'undefined') {
       // @ts-ignore
       expect(console.warn.calledOnce).to.be.true;
     } else {
@@ -352,7 +352,7 @@ class ConsoleTester {
   }
 }
 
-describe("Logger class", function () {
+describe('Logger class', function () {
   describe('Testing of the Logger class using a "spied" Logger', function () {
     const testLogger = new TestLogger();
 
@@ -365,31 +365,31 @@ describe("Logger class", function () {
       logger.setLogger();
     });
 
-    describe("Ensures that the module constants are properly defined", function () {
-      it("Validates the LOG_SEVERITY_COUNT constant", function () {
+    describe('Ensures that the module constants are properly defined', function () {
+      it('Validates the LOG_SEVERITY_COUNT constant', function () {
         expect(Object.keys(LogSeverity).length / 2).to.eq(LOG_SEVERITY_COUNT);
       });
 
-      it("Validates the LOG_SEVERITY_LOWEST_SEVERITY constant", function () {
+      it('Validates the LOG_SEVERITY_LOWEST_SEVERITY constant', function () {
         expect(LogSeverity[LOG_SEVERITY_COUNT - 1]).to.eq(
           LogSeverity[LOG_SEVERITY_LOWEST_SEVERITY]
         );
       });
     });
 
-    describe("Initialize the Logger class", function () {
-      it("initializes the Logger with the defaults", function () {
+    describe('Initialize the Logger class', function () {
+      it('initializes the Logger with the defaults', function () {
         expect(logger).to.be.an.instanceof(Logger);
       });
     });
   });
 
-  describe("Testing of the Logger class using the native Loggers (Browser/Node)", function () {
+  describe('Testing of the Logger class using the native Loggers (Browser/Node)', function () {
     beforeEach(function () {
       logger.reset();
     });
 
-    type TestType = "default" | "node" | "browser";
+    type TestType = 'default' | 'node' | 'browser';
     interface TestProfile {
       name: string;
       testType: TestType;
@@ -397,16 +397,16 @@ describe("Logger class", function () {
     }
 
     const testProfiles: TestProfile[] = [
-      { name: "NodeLogger", testType: "node", browserWithWarn: false },
-      { name: "BrowserLogger", testType: "browser", browserWithWarn: false },
-      { name: "BrowserLogger", testType: "browser", browserWithWarn: true },
+      { name: 'NodeLogger', testType: 'node', browserWithWarn: false },
+      { name: 'BrowserLogger', testType: 'browser', browserWithWarn: false },
+      { name: 'BrowserLogger', testType: 'browser', browserWithWarn: true },
     ];
 
     testProfiles.forEach((value: TestProfile) => {
       const testTitleSuffix =
-        value.testType === "browser"
+        value.testType === 'browser'
           ? ` (w/browserWithWarn = ${value.browserWithWarn})`
-          : "";
+          : '';
       const testTitle = `${value.name}${testTitleSuffix}`;
       describe(`Tests using the ${testTitle} class`, function () {
         let consoleTester: ConsoleTester;
@@ -425,14 +425,14 @@ describe("Logger class", function () {
           logger.setLogger();
         });
 
-        describe("Checks that all of the Loggers are called correctly", function () {
-          it("ensures all Logger logging methods are called", function () {
+        describe('Checks that all of the Loggers are called correctly', function () {
+          it('ensures all Logger logging methods are called', function () {
             consoleTester.testSpies();
             consoleTester.reset();
           });
         });
 
-        describe("Checks the logging routines with each LogSeverity", function () {
+        describe('Checks the logging routines with each LogSeverity', function () {
           for (const lsKey in LogSeverity) {
             if (parseInt(lsKey, 10) >= 0) {
               const numLogSeverity = parseInt(lsKey, 10);
@@ -444,32 +444,32 @@ describe("Logger class", function () {
           }
         });
 
-        describe("Covers the time/timeEnd workflow", function () {
-          it("exercises the time/timeEnd workflow", async function () {
+        describe('Covers the time/timeEnd workflow', function () {
+          it('exercises the time/timeEnd workflow', async function () {
             await consoleTester.testTimeSpies();
             consoleTester.reset();
           });
         });
 
-        describe("Covers non-standard calling patterns", function () {
-          it("works through the muteLogger workflow", function () {
+        describe('Covers non-standard calling patterns', function () {
+          it('works through the muteLogger workflow', function () {
             // Set our baseline
             expect(logger.muteLogger).to.be.false;
             expect(logger.messagesLogged).to.eq(0);
             expect(logger.filteredMessages).to.eq(0);
 
-            logger.emergency("Test message that should be logged");
+            logger.emergency('Test message that should be logged');
             expect(logger.messagesLogged).to.eq(1);
             expect(logger.filteredMessages).to.eq(0);
 
             logger.muteLogger = true;
-            logger.emergency("Test message that should not be logged");
+            logger.emergency('Test message that should not be logged');
             expect(logger.muteLogger).to.be.true;
             expect(logger.messagesLogged).to.eq(1);
             expect(logger.filteredMessages).to.eq(1);
           });
 
-          it("works through the severityLevel workflow", function () {
+          it('works through the severityLevel workflow', function () {
             logger.severityLevel = LogSeverity.Emergency;
             expect(logger.severityLevel).to.equal(LogSeverity.Emergency);
 
@@ -478,13 +478,13 @@ describe("Logger class", function () {
           });
 
           it(
-            "ensures that logger.emergency messages can be filtered" +
-              " with muteLogger set to true",
+            'ensures that logger.emergency messages can be filtered' +
+              ' with muteLogger set to true',
             function () {
               logger.muteLogger = true;
               expect(logger.messagesLogged).to.eq(0);
               expect(logger.filteredMessages).to.eq(0);
-              logger.emergency("This will not be logged");
+              logger.emergency('This will not be logged');
               expect(logger.messagesLogged).to.eq(0);
               expect(logger.filteredMessages).to.eq(1);
             }

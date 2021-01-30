@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2015",
     "module": "commonjs",
-    "lib": ["es6"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
     "declaration": true,
     "sourceMap": true,
+    "removeComments": true,
     "outDir": "./dist/",
     "rootDir": "./src",
-    "removeComments": true,
-    "importHelpers": true,
+
     "downlevelIteration": true,
-    "strict": true,
+    "importHelpers": true,
+
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true
+    "noImplicitReturns": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules"]
