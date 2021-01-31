@@ -1,6 +1,6 @@
 {
   "name": "af-utilities",
-  "version": "1.2.5",
+  "version": "1.3.0",
   "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
   "main": "dist/lib/index.js",
   "scripts": {
