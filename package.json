@@ -12,9 +12,12 @@
     "clean:all": "npm run clean:build && npm run clean:reports",
     "clean-all": "npm run clean:all",
     "compile": " npx tsc",
+    "coverage": "npx nyc report --reporter=text-lcov | coveralls",
     "dist": "npm run build",
+    "fix": "npx eslint --fix '**/*.ts'",
+    "format": "npx prettier --write .",
+    "lint": "npx eslint '**/*.ts'",
     "test": "TS_NODE_PROJECT='./test/tsconfig.json'  npx nyc mocha --config ./test/.mocharc.json --reporter-options reportDir='./reports/testing'",
-    "coverage": "npx nyc report --reporter=text-lcov | coveralls"
   },
   "files": [
     "build"
