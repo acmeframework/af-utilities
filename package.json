@@ -4,8 +4,8 @@
   "description": "Utility functions used within the af-XXXX Frameworks and Libraries",
   "main": "dist/lib/index.js",
   "scripts": {
-    "clean-dist": "rm -rf dist",
-    "clean-reports": "rm -rf reports && rm -rf .nyc_output",
+    "clean-dist": "npx rimraf dist",
+    "clean-reports": "npx rimraf reports && npx rimraf .nyc_output",
     "clean-all": "npm run clean-dist && npm run clean-reports",
     "compile": "./node_modules/.bin/tsc",
     "dist": "npm run clean-all && npm test && npm run compile",
