@@ -55,6 +55,10 @@ export class TaskTimer {
     logger.info(
       `[TaskTimer] starting ${this.data.taskName} (id: ${this.data.taskId})`
     );
+    logger.debug(
+      `[TaskTimer][debug] starting ${this.data.taskName} (id: ${this.data.taskId}) w/data`,
+      this.data
+    );
   }
 
   public stopTask(): number {
@@ -62,11 +66,19 @@ export class TaskTimer {
     logger.info(
       `[TaskTimer] stopping ${this.data.taskName} (id: ${this.data.taskId})`
     );
+    logger.debug(
+      `[TaskTimer][debug] stopping ${this.data.taskName} (id: ${this.data.taskId}) w/data`,
+      this.data
+    );
     this.data.stop = Date.now();
     this.data.status = TaskStatus.stopped;
     this.data.msDiff = this.data.stop - this.data.start;
     logger.info(
       `[TaskTimer] stopped ${this.data.taskName} (id: ${this.data.taskId}) took ${this.data.msDiff}ms`
+    );
+    logger.debug(
+      `[TaskTimer][debug] stopped ${this.data.taskName} (id: ${this.data.taskId}) took ${this.data.msDiff}ms w/data`,
+      this.data
     );
     return this.data.msDiff;
   }
@@ -100,7 +112,11 @@ export class TaskTimerManager {
   protected tasksActive = 0;
   protected tasksTook = 0;
 
-  constructor(protected name = DEFAULT_TASK_TIMER_MANAGER_NAME) {}
+  constructor(protected name = DEFAULT_TASK_TIMER_MANAGER_NAME) {
+    logger.debug(
+      `[TaskTimerManager] creating a new TaskTimeManager instance named ${name}`
+    );
+  }
 
   public getName(): string {
     return this.name;
