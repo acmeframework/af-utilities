@@ -53,37 +53,20 @@ export class TaskTimer {
     };
     this.data.status = TaskStatus.running;
     logger.info(
-      'TaskTimer: starting ' +
-        this.data.taskName +
-        ' (id: ' +
-        this.data.taskId +
-        ')',
-      this.data
+      `[TaskTimer] starting ${this.data.taskName} (id: ${this.data.taskId})`
     );
   }
 
   public stopTask(): number {
     this.data.status = TaskStatus.stopping;
     logger.info(
-      'TaskTimer: stopping ' +
-        this.data.taskName +
-        ' (id: ' +
-        this.data.taskId +
-        ')',
-      this.data
+      `[TaskTimer] stopping ${this.data.taskName} (id: ${this.data.taskId})`
     );
     this.data.stop = Date.now();
     this.data.status = TaskStatus.stopped;
     this.data.msDiff = this.data.stop - this.data.start;
     logger.info(
-      'TaskTimer: stopped ' +
-        this.data.taskName +
-        ' (id: ' +
-        this.data.taskId +
-        ') took ' +
-        this.data.msDiff +
-        'ms',
-      this.data
+      `[TaskTimer] stopped ${this.data.taskName} (id: ${this.data.taskId}) took ${this.data.msDiff}ms`
     );
     return this.data.msDiff;
   }
