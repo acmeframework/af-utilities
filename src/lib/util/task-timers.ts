@@ -112,11 +112,7 @@ export class TaskTimerManager {
   protected tasksActive = 0;
   protected tasksTook = 0;
 
-  constructor(protected name = DEFAULT_TASK_TIMER_MANAGER_NAME) {
-    logger.debug(
-      `[TaskTimerManager] creating a new TaskTimeManager instance named ${name}`
-    );
-  }
+  constructor(protected name = DEFAULT_TASK_TIMER_MANAGER_NAME) {}
 
   public getName(): string {
     return this.name;
