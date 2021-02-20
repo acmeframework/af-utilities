@@ -167,7 +167,7 @@ function _callLogMethod(
   }
 }
 
-class BrowserLogger extends BaseLogger implements LogDriver {
+export class BrowserLogger extends BaseLogger implements LogDriver {
   public alert(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Alert)) {
       _callLogMethod(console, 'log', message, params);
@@ -241,7 +241,7 @@ class BrowserLogger extends BaseLogger implements LogDriver {
   }
 }
 
-class NodeLogger extends BaseLogger implements LogDriver {
+export class NodeLogger extends BaseLogger implements LogDriver {
   public alert(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Alert)) {
       _callLogMethod(console, 'log', message, params);
