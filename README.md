@@ -30,33 +30,6 @@ The af-utilities library provides utility classes and functions used throughout 
 
 ## [Support Issues](https://github.com/acmeframework/af-utilities/issues)
 
-## Release Notes
-
-### v1.0.0 - Initial Release
-
-This is the initial release version. The code has been thoroughly tested with 100% coverage.
-
-### v1.1.0 - Packaging Updates
-
-Updates to dependencies to remove security vulnerabilities. Updates to the packaging.
-
-#### Fixes
-
-- v1.1.1 - Dependency Updates
-
-Updated all dependencies to the latest releases. This fixed an vulnerability with Handlebars which was a nested dependency. Handlebars is no longer a nested dependency with this release.
-
-### v1.2.0 - Minor new features
-
-- Added a new method to the TaskTimer class that now allows you to define your own current time source. This can be used to provide a more accurate time source than the default `Date.now()`. This change is fully backward compatible.
-- Added a new utility function:
-  - `setValue`
-
-#### Fixes
-
-- v1.2.1 - Fix Rest Parameter Handling
-- v1.2.2 - Fix Test Timing Expectations
-
 ## The MIT License
 
 Copyright &copy; 2019-2021 Acme Framework
