@@ -17,7 +17,7 @@
     "fix": "npx eslint --fix '**/*.ts'",
     "format": "npx prettier --write .",
     "lint": "npx eslint '**/*.ts'",
-    "test": "TS_NODE_PROJECT='./test/tsconfig.json'  npx nyc mocha --config ./test/.mocharc.json --reporter-options reportDir='./reports/testing'",
+    "test": "TS_NODE_PROJECT='./test/tsconfig.json'  npx nyc mocha --config ./test/.mocharc.json --reporter-options reportDir='./reports/testing'"
   },
   "files": [
     "build"
