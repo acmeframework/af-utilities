@@ -9,7 +9,7 @@
     "clean-all": "npm run clean-dist && npm run clean-reports",
     "compile": "./node_modules/.bin/tsc",
     "dist": "npm run clean-all && npm test && npm run compile",
-    "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha --config ./test/.mocharc.json --reporter-options reportDir='./reports/testing'",
+    "test": "TS_NODE_PROJECT='./test/tsconfig.json' ./node_modules/.bin/nyc ./node_modules/.bin/mocha --config ./test/.mocharc.json --reporter-options reportDir='./reports/testing'",
     "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
   },
   "files": [
