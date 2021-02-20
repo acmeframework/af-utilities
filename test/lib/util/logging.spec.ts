@@ -5,12 +5,14 @@ import sinon from 'sinon';
 
 import {
   BaseLogger,
+  BrowserLogger,
   LOG_SEVERITY_COUNT,
   LOG_SEVERITY_LOWEST_SEVERITY,
   LogDriver,
   Logger,
   logger,
   LogSeverity,
+  NodeLogger,
 } from '../../../src/lib';
 
 /* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-non-null-assertion */
@@ -87,23 +89,25 @@ class ConsoleTester {
     sinon.spy(console, 'info');
     sinon.spy(console, 'log');
 
-    let isNode = typeof console.debug !== 'undefined';
-    const warningDefined = isNode || typeof console.warn !== 'undefined';
-    const timeDefined = isNode || typeof console.time !== 'undefined';
-    const timeEndDefined = isNode || typeof console.timeEnd !== 'undefined';
+    // This simple test was taken from StackOverflow
+    // https://stackoverflow.com/a/31090240/7102037
+    const isBrowser = new Function(
+      'try {return this===window;}catch(e){return false;}'
+    );
+    let isNode = !isBrowser();
 
     // Now either setup based upon the environment or create a specific one
     if (testType === 'default') {
+      const warningDefined = isNode || typeof console.warn !== 'undefined';
+      const timeDefined = isNode || typeof console.time !== 'undefined';
+      const timeEndDefined = isNode || typeof console.timeEnd !== 'undefined';
+
       if (isNode) {
         sinon.spy(console, 'debug');
-        sinon.spy(console, 'time');
-        sinon.spy(console, 'timeEnd');
-        sinon.spy(console, 'warn');
-      } else {
-        if (timeDefined) sinon.spy(console, 'time');
-        if (timeEndDefined) sinon.spy(console, 'timeEnd');
-        if (warningDefined) sinon.spy(console, 'warn');
       }
+      if (timeDefined) sinon.spy(console, 'time');
+      if (timeEndDefined) sinon.spy(console, 'timeEnd');
+      if (warningDefined) sinon.spy(console, 'warn');
     } else {
       // We aren't default so force isNode
       isNode = testType === 'node';
@@ -117,6 +121,10 @@ class ConsoleTester {
         console.debug = undefined!; // Force debug to undefined!
 
         if (browserWithExtras) {
+          const warningDefined = typeof console.warn !== 'undefined';
+          const timeDefined = typeof console.time !== 'undefined';
+          const timeEndDefined = typeof console.timeEnd !== 'undefined';
+
           if (timeDefined) {
             sinon.spy(console, 'time');
           } else {
@@ -416,7 +424,18 @@ describe('Logger class', function () {
             value.testType,
             value.browserWithWarn
           );
-          logger.setLogger();
+
+          let logHandler: LogDriver | undefined;
+
+          switch (value.testType) {
+            case 'browser':
+              logHandler = new BrowserLogger();
+              break;
+            case 'node':
+              logHandler = new NodeLogger();
+              break;
+          }
+          logger.setLogger(logHandler);
         });
 
         after(function () {
