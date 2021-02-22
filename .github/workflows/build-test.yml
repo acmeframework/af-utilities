@@ -1,0 +1,25 @@
+name: Build and Test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - releases/*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+
+      - name: NPM use ci to install cleanly
+        run: npm ci
+
+      - name: Clean, test, and compile
+        run: npm run dist
+
+      - name: Coveralls report
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./reports/coverage/lcov.info
