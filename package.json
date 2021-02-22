@@ -11,12 +11,13 @@
     "clean-reports": "npm run clean:reports",
     "clean:all": "npm run clean:build && npm run clean:reports",
     "clean-all": "npm run clean:all",
-    "compile": " npx tsc",
-    "coverage": "npx nyc report --reporter=text-lcov | coveralls",
+    "compile": "npx tsc",
+    "coverage-coveralls": "npx nyc report --reporter=text-lcov | coveralls",
     "coverage-complete": "npx nyc report --check-coverage --branches 100 --functions 100 --statements 100 --lines 100",
     "dist": "npm run build",
     "fix": "npx eslint --fix '**/*.ts'",
     "format": "npx prettier --write .",
+    "format-check": "npx prettier --check .",
     "lint": "npx eslint '**/*.ts'",
     "test": "TS_NODE_PROJECT='./test/tsconfig.json'  npx nyc mocha --config ./test/.mocharc.json --reporter-options reportDir='./reports/testing'"
   },
@@ -47,7 +48,7 @@
   "bugs": {
     "url": "https://github.com/acmeframework/af-utilities/issues"
   },
-  "homepage": "https://github.com/acmeframework/af-utilities",
+  "homepage": "https://github.com/acmeframework/af-utilities#readme",
   "dependencies": {
     "af-conditionals": "^1.2.0",
     "tslib": "^2.1.0",
