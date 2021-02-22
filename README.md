@@ -2,7 +2,7 @@
 
 ## Status of Project
 
-[![Build Status](https://travis-ci.org/acmeframework/af-utilities.svg?branch=master)](https://travis-ci.org/acmeframework/af-utilities) [![Coverage Status](https://coveralls.io/repos/github/acmeframework/af-utilities/badge.svg?branch=master)](https://coveralls.io/github/acmeframework/af-utilities?branch=master)
+[![Build Status](https://github.com/acmeframework/af-utilities/actions/workflows/build-test.yml/badge.svg)](https://github.com/acmeframework/af-utilities/actions/workflows/build-test.yml) [![Coverage Status](https://coveralls.io/repos/github/acmeframework/af-utilities/badge.svg?branch=main)](https://coveralls.io/github/acmeframework/af-utilities?branch=main)
 
 ## Installation
 
