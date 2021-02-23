@@ -45,7 +45,7 @@ export class TaskTimer {
     assert_isUsable(taskName);
     this.data = {
       msDiff: 0,
-      start: Date.now(),
+      start: this._getTimestamp(),
       status: TaskStatus.initialized,
       stop: 0,
       taskId,
@@ -61,6 +61,10 @@ export class TaskTimer {
     );
   }
 
+  protected _getTimestamp(): number {
+    return Date.now();
+  }
+
   public stopTask(): number {
     this.data.status = TaskStatus.stopping;
     logger.info(
@@ -70,7 +74,7 @@ export class TaskTimer {
       `[TaskTimer][debug] stopping ${this.data.taskName} (id: ${this.data.taskId}) w/data`,
       this.data
     );
-    this.data.stop = Date.now();
+    this.data.stop = this._getTimestamp();
     this.data.status = TaskStatus.stopped;
     this.data.msDiff = this.data.stop - this.data.start;
     logger.info(
@@ -118,9 +122,13 @@ export class TaskTimerManager {
     return this.name;
   }
 
+  protected _taskTimer(taskId: TaskId, taskName: string): TaskTimer {
+    return new TaskTimer(taskId, taskName);
+  }
+
   public startTimer(taskName: string): TaskId {
     const taskId = this.getTaskId();
-    this.tasks[taskId] = new TaskTimer(taskId, taskName);
+    this.tasks[taskId] = this._taskTimer(taskId, taskName);
     this.taskCount++;
     this.tasksActive++;
     return taskId;
