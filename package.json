@@ -12,6 +12,7 @@
     "clean:all": "npm run clean:build && npm run clean:reports",
     "clean-all": "npm run clean:all",
     "compile": "npx tsc",
+    "commit-check": "npm run build && npm run coverage-complete",
     "coverage-coveralls": "npx nyc report --reporter=text-lcov | coveralls",
     "coverage-complete": "npx nyc report --check-coverage --branches 100 --functions 100 --statements 100 --lines 100",
     "dist": "npm run build",
