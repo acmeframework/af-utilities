@@ -17,14 +17,20 @@ jobs:
       - name: NPM clean install
         run: npm ci
 
-      - name: Check format
-        run: npm run format-check
-
       - name: Check linting
         run: npm run lint
 
-      - name: Clean, test, and compile
-        run: npm run build
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check coverage
+        run: npm run coverage:check
+
+      - name: Build
+        run: npm run compile
 
       - name: Send Coveralls report
         uses: coverallsapp/github-action@master
