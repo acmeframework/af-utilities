@@ -1,6 +1,6 @@
 .nyc_output
 .vscode
-dist
+build
 node_modules
 reports
 

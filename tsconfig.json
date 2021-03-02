@@ -1,25 +1,10 @@
 {
-  "compilerOptions": {
-    "target": "ES2015",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
-    "declaration": true,
-    "sourceMap": true,
-    "removeComments": true,
-    "outDir": "./dist/",
-    "rootDir": "./src",
-
-    "downlevelIteration": true,
-    "importHelpers": true,
-
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true
-  },
+  "extends": "./tsconfig-base.json",
   "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "removeComments": true,
+    "outDir": "./build/",
+    "rootDir": "./src"
+  }
 }

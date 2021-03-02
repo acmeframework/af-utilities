@@ -167,7 +167,7 @@ function _callLogMethod(
   }
 }
 
-class BrowserLogger extends BaseLogger implements LogDriver {
+export class BrowserLogger extends BaseLogger implements LogDriver {
   public alert(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Alert)) {
       _callLogMethod(console, 'log', message, params);
@@ -241,7 +241,7 @@ class BrowserLogger extends BaseLogger implements LogDriver {
   }
 }
 
-class NodeLogger extends BaseLogger implements LogDriver {
+export class NodeLogger extends BaseLogger implements LogDriver {
   public alert(message: string, ...params: any[]): void {
     if (!this.shouldFilterMessage(LogSeverity.Alert)) {
       _callLogMethod(console, 'log', message, params);
@@ -325,9 +325,13 @@ export class Logger implements LogDriver {
     if (isObject(newLogger)) {
       this.logger = newLogger;
     } else {
-      // Quick easy check to determine if Node or a Window/WebWorker
-      // environment
-      if (!isFunction(console.debug)) {
+      // This simple test was taken from StackOverflow
+      // https://stackoverflow.com/a/31090240/7102037
+      const isBrowser = new Function(
+        'try {return this===window;}catch(e){return false;}'
+      );
+      /* istanbul ignore if */
+      if (isBrowser()) {
         this.logger = new BrowserLogger();
       } else {
         this.logger = new NodeLogger();

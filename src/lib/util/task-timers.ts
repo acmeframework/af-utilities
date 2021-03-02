@@ -45,7 +45,7 @@ export class TaskTimer {
     assert_isUsable(taskName);
     this.data = {
       msDiff: 0,
-      start: Date.now(),
+      start: this._getTimestamp(),
       status: TaskStatus.initialized,
       stop: 0,
       taskId,
@@ -53,36 +53,35 @@ export class TaskTimer {
     };
     this.data.status = TaskStatus.running;
     logger.info(
-      'TaskTimer: starting ' +
-        this.data.taskName +
-        ' (id: ' +
-        this.data.taskId +
-        ')',
+      `[TaskTimer] starting ${this.data.taskName} (id: ${this.data.taskId})`
+    );
+    logger.debug(
+      `[TaskTimer][debug] starting ${this.data.taskName} (id: ${this.data.taskId}) w/data`,
       this.data
     );
+  }
+
+  protected _getTimestamp(): number {
+    return Date.now();
   }
 
   public stopTask(): number {
     this.data.status = TaskStatus.stopping;
     logger.info(
-      'TaskTimer: stopping ' +
-        this.data.taskName +
-        ' (id: ' +
-        this.data.taskId +
-        ')',
+      `[TaskTimer] stopping ${this.data.taskName} (id: ${this.data.taskId})`
+    );
+    logger.debug(
+      `[TaskTimer][debug] stopping ${this.data.taskName} (id: ${this.data.taskId}) w/data`,
       this.data
     );
-    this.data.stop = Date.now();
+    this.data.stop = this._getTimestamp();
     this.data.status = TaskStatus.stopped;
     this.data.msDiff = this.data.stop - this.data.start;
     logger.info(
-      'TaskTimer: stopped ' +
-        this.data.taskName +
-        ' (id: ' +
-        this.data.taskId +
-        ') took ' +
-        this.data.msDiff +
-        'ms',
+      `[TaskTimer] stopped ${this.data.taskName} (id: ${this.data.taskId}) took ${this.data.msDiff}ms`
+    );
+    logger.debug(
+      `[TaskTimer][debug] stopped ${this.data.taskName} (id: ${this.data.taskId}) took ${this.data.msDiff}ms w/data`,
       this.data
     );
     return this.data.msDiff;
@@ -123,9 +122,13 @@ export class TaskTimerManager {
     return this.name;
   }
 
+  protected _taskTimer(taskId: TaskId, taskName: string): TaskTimer {
+    return new TaskTimer(taskId, taskName);
+  }
+
   public startTimer(taskName: string): TaskId {
     const taskId = this.getTaskId();
-    this.tasks[taskId] = new TaskTimer(taskId, taskName);
+    this.tasks[taskId] = this._taskTimer(taskId, taskName);
     this.taskCount++;
     this.tasksActive++;
     return taskId;
