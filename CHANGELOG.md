@@ -33,3 +33,7 @@ Updated all dependencies to the latest releases. This fixed an vulnerability wit
 - Migrate to GitHub Actions for build and testing - away from Travis CI.
 - Use Node based tools for file management (`rimraf`) and update build process and `package.json` scripts to conform with new standards set in [`codemgr`](https://github.com/acmeframework/codemgr) tool.
 - Added additional logging to internal classes and changed log message strings to use Template strings.
+
+### Fixes
+
+- v1.3.1 - Fix publish automation, correct spelling of `types` key
